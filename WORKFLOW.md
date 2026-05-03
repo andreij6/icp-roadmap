@@ -25,6 +25,11 @@ hooks:
 agent:
   max_concurrent_agents: 10
   max_turns: 20
+codex:
+  runner: claude_code
+  command: claude --print --verbose --output-format stream-json --max-turns 50 --permission-mode bypassPermissions
+  turn_timeout_ms: 3600000
+  stall_timeout_ms: 300000
 ---
 
 You are working on a Linear ticket `{{ issue.identifier }}`
