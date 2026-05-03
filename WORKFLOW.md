@@ -107,7 +107,15 @@ The agent should be able to talk to Linear, either via a configured Linear MCP s
 
 1. Fetch the issue by explicit ticket ID.
 2. Read the current state.
-3. Route to the matching flow:
+3. **Check `blockedBy` relationships before doing anything else.**
+   - Fetch all issues linked to this ticket with relationship type `blockedBy`.
+   - For each blocking issue, check its current state.
+   - If ANY blocking issue is not in a terminal state (`Done`, `Cancelled`, `Canceled`, `Duplicate`, `Closed`):
+     - Move this ticket back to `Backlog`.
+     - Post a single comment (not a workpad): `Blocked by {{ blocking_issue.identifier }} ({{ blocking_issue.state }}). Moving to Backlog until resolved.`
+     - Stop immediately. Do not proceed.
+   - If all blocking issues are terminal, continue to step 4.
+4. Route to the matching flow:
    - `Backlog` -> do not modify issue content/state; stop and wait for human to move it to `Todo`.
    - `Todo` -> immediately move to `In Progress`, then ensure bootstrap workpad comment exists (create if missing), then start execution flow.
      - If PR is already attached, start by reviewing all open PR comments and deciding required changes vs explicit pushback responses.
@@ -116,7 +124,7 @@ The agent should be able to talk to Linear, either via a configured Linear MCP s
    - `Merging` -> on entry, open and follow `.codex/skills/land/SKILL.md`; do not call `gh pr merge` directly.
    - `Rework` -> run rework flow.
    - `Done` -> do nothing and shut down.
-4. Check whether a PR already exists for the current branch and whether it is closed.
+5. Check whether a PR already exists for the current branch and whether it is closed.
    - If a branch PR exists and is `CLOSED` or `MERGED`, treat prior branch work as non-reusable for this run.
    - Create a fresh branch from `origin/main` and restart execution flow as a new attempt.
 5. For `Todo` tickets, do startup sequencing in this exact order:
