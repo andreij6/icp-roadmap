@@ -27,7 +27,7 @@ agent:
   max_turns: 20
 codex:
   runner: claude_code
-  command: claude --print --verbose --output-format stream-json --max-turns 50 --permission-mode bypassPermissions
+  command: claude --model claude-sonnet-4-6 --print --verbose --output-format stream-json --max-turns 50 --permission-mode bypassPermissions
   turn_timeout_ms: 3600000
   stall_timeout_ms: 300000
 ---
