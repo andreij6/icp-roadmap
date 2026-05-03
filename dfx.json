@@ -1,0 +1,28 @@
+{
+  "canisters": {
+    "roadmap_backend": {
+      "candid": "src/roadmap_backend/roadmap_backend.did",
+      "package": "roadmap_backend",
+      "type": "rust"
+    },
+    "roadmap_frontend": {
+      "dependencies": ["roadmap_backend"],
+      "source": ["src/roadmap_frontend/assets"],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:4943",
+      "type": "ephemeral"
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
