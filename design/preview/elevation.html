@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Elevation</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 12px 8px 24px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .surface { width: 100%; height: 90px; background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px; }
+  .e0 { box-shadow: none; }
+  .e1 { box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 1px 2px rgba(0,0,0,0.4); }
+  .e2 { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3); }
+  .name { font-family: var(--font-mono); font-size: 11px; color: var(--fg); }
+  .val { font-size: 10px; color: var(--fg-subtle); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-eyebrow">Elevation · subtle, 3 tiers</div>
+  <div class="grid">
+    <div class="cell"><div class="surface e0"></div><span class="name">shadow-0</span><span class="val">flat / canvas</span></div>
+    <div class="cell"><div class="surface e1"></div><span class="name">shadow-1</span><span class="val">tickets, inputs</span></div>
+    <div class="cell"><div class="surface e2"></div><span class="name">shadow-2</span><span class="val">modals, popovers</span></div>
+  </div>
+</div>
+</body>
+</html>

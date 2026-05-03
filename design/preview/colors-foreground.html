@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Foreground / text</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .fg-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .fg-block {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .fg-block .swatch { display: inline-block; height: 14px; width: 14px; border-radius: 3px; vertical-align: middle; margin-right: 8px; border: 1px solid rgba(255,255,255,0.06); }
+  .fg-line { display: flex; align-items: center; }
+  .fg-name { font-weight: 500; font-size: 13px; }
+  .fg-meta { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--fg-subtle); }
+  .demo { font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-eyebrow">Foreground</div>
+  <div class="fg-row">
+    <div class="fg-block">
+      <div class="fg-line"><span class="swatch" style="background:#FFFFFF"></span><span class="fg-name strong">fg-strong</span><span class="fg-meta">#FFFFFF</span></div>
+      <div class="demo strong">Quorum reached.</div>
+    </div>
+    <div class="fg-block">
+      <div class="fg-line"><span class="swatch" style="background:#E6E8EC"></span><span class="fg-name">fg</span><span class="fg-meta">#E6E8EC</span></div>
+      <div class="demo">Stake to vote on a proposal.</div>
+    </div>
+    <div class="fg-block">
+      <div class="fg-line"><span class="swatch" style="background:#9AA0AB"></span><span class="fg-name muted">fg-muted</span><span class="fg-meta">#9AA0AB</span></div>
+      <div class="demo muted">Voting closes in 4 days.</div>
+    </div>
+    <div class="fg-block">
+      <div class="fg-line"><span class="swatch" style="background:#61666F"></span><span class="fg-name subtle">fg-subtle</span><span class="fg-meta">#61666F</span></div>
+      <div class="demo subtle">Search ideas, principals…</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

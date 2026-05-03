@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Accent colors</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .accent-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .accent {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .swatch-blob {
+    height: 36px;
+    border-radius: var(--radius-sm);
+  }
+  .accent .name { font-size: 12px; font-weight: 500; color: var(--fg-strong); }
+  .accent .role { font-size: 11px; color: var(--fg-muted); }
+  .accent .hex { font-family: var(--font-mono); font-size: 10px; color: var(--fg-subtle); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-eyebrow">Accents · sparingly used</div>
+  <div class="accent-row">
+    <div class="accent">
+      <div class="swatch-blob" style="background:#7B7FFF"></div>
+      <span class="name">Iris</span>
+      <span class="role">Primary action · on-chain</span>
+      <span class="hex">#7B7FFF</span>
+    </div>
+    <div class="accent">
+      <div class="swatch-blob" style="background:#F2C94C"></div>
+      <span class="name">Citrine</span>
+      <span class="role">ICP · staking · boost</span>
+      <span class="hex">#F2C94C</span>
+    </div>
+    <div class="accent">
+      <div class="swatch-blob" style="background:#4ADE80"></div>
+      <span class="name">Aurora</span>
+      <span class="role">For-vote · success · done</span>
+      <span class="hex">#4ADE80</span>
+    </div>
+    <div class="accent">
+      <div class="swatch-blob" style="background:#F26D9C"></div>
+      <span class="name">Magenta</span>
+      <span class="role">Against · archive · destructive</span>
+      <span class="hex">#F26D9C</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

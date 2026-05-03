@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Roadmap — App</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body, html { height: 100%; overflow: hidden; }
+  #root { height: 100vh; display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="Icons.jsx"></script>
+<script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="Sidebar.jsx"></script>
+<script type="text/babel" src="Header.jsx"></script>
+<script type="text/babel" src="TicketCard.jsx"></script>
+<script type="text/babel" src="KanbanBoard.jsx"></script>
+<script type="text/babel" src="TicketModal.jsx"></script>
+<script type="text/babel" src="InfluencePanel.jsx"></script>
+
+<script type="text/babel">
+const PROJECTS = [
+  { id: 'icp-roadmap', name: 'ICP Roadmap', color: '#7B7FFF', northStar: 'On-chain governance for every open-source project' },
+  { id: 'oisy',        name: 'Oisy Wallet', color: '#F2C94C', northStar: 'A wallet anyone can audit' },
+  { id: 'caffeine',    name: 'Caffeine.ai', color: '#4ADE80', northStar: 'Vibe-code on-chain apps' },
+  { id: 'openchat',    name: 'OpenChat',    color: '#F26D9C', northStar: 'Decentralised group chat for everyone' },
+];
+
+const SEED_TICKETS = [
+  // Voting
+  { id: 'ROAD-142', status: 'voting', title: 'Add gasless voting via canister-paid cycles', for: 412, against: 88, closesIn: '4d', boosted: 2.4, comments: 12,
+    avatars: [{color:'#7B7FFF',label:'N'},{color:'#F2C94C',label:'D'},{color:'#4ADE80',label:'K'}], extra: 9 },
+  { id: 'ROAD-141', status: 'voting', title: 'Show vote-weight breakdown on each ticket', for: 184, against: 22, closesIn: '6d', comments: 4,
+    avatars: [{color:'#F26D9C',label:'A'},{color:'#7B7FFF',label:'M'}], extra: 3 },
+  { id: 'ROAD-140', status: 'voting', title: 'Allow Founders to mark proposals as urgent', for: 94, against: 112, closesIn: '2d', comments: 27,
+    avatars: [{color:'#4ADE80',label:'K'},{color:'#F2C94C',label:'D'}], extra: 6 },
+  { id: 'ROAD-139', status: 'voting', title: 'Internet Identity passkey rollout', for: 302, against: 14, closesIn: '5d', boosted: 1.0,
+    avatars: [{color:'#7B7FFF',label:'N'}], extra: 14 },
+
+  // Development
+  { id: 'ROAD-118', status: 'dev', title: 'Treasury dashboard with cycle burn rate', pr: '#PR-204', branch: 'feat/treasury', comments: 8,
+    avatars: [{color:'#F26D9C',label:'A'},{color:'#7B7FFF',label:'M'}] },
+  { id: 'ROAD-115', status: 'dev', title: 'Webhook integration for GitHub status sync', pr: '#PR-198', branch: 'feat/gh-hooks', comments: 3,
+    avatars: [{color:'#F2C94C',label:'D'}] },
+  { id: 'ROAD-112', status: 'dev', title: 'Mobile-responsive Kanban board', pr: '#PR-189', branch: 'fix/mobile-kanban',
+    avatars: [{color:'#4ADE80',label:'K'},{color:'#F26D9C',label:'A'}] },
+
+  // Done
+  { id: 'ROAD-098', status: 'done', title: 'Internet Identity sign-in', shippedAt: 'shipped 2d', avatars: [{color:'#7B7FFF',label:'N'}] },
+  { id: 'ROAD-091', status: 'done', title: 'Stake-to-vote flow', shippedAt: 'shipped 1w', avatars: [{color:'#F2C94C',label:'D'},{color:'#4ADE80',label:'K'}] },
+  { id: 'ROAD-085', status: 'done', title: 'Project switcher in sidebar', shippedAt: 'shipped 2w', avatars: [{color:'#F26D9C',label:'A'}] },
+
+  // Archived
+  { id: 'ROAD-077', status: 'archived', title: 'Auto-mint NFTs for top voters', reason: 'failed quorum', avatars: [{color:'#61666F',label:'?'}] },
+  { id: 'ROAD-064', status: 'archived', title: 'Founders can override votes', reason: 'rejected', avatars: [{color:'#61666F',label:'?'}] },
+];
+
+function App() {
+  const [activeProject, setActiveProject] = React.useState('icp-roadmap');
+  const [tickets] = React.useState(SEED_TICKETS);
+  const [openTicket, setOpenTicket] = React.useState(null);
+  const [influenceOpen, setInfluenceOpen] = React.useState(false);
+
+  const project = PROJECTS.find(p => p.id === activeProject);
+
+  return (
+    <>
+      <Sidebar
+        projects={PROJECTS}
+        activeProject={activeProject}
+        onSelectProject={setActiveProject}
+        user={{ name: 'nina.icp', vp: 1240, staked: 52.0 }}
+      />
+      <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', background: '#08090C' }}>
+        <Header project={project} onNewIdea={() => {}} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px 0', borderBottom: '1px solid transparent' }}>
+          <button
+            onClick={() => setInfluenceOpen(true)}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '6px 10px', height: 28, borderRadius: 6,
+              background: 'rgba(242,201,76,0.06)', border: '1px solid rgba(242,201,76,0.20)',
+              color: '#F2C94C', fontSize: 12, fontWeight: 500, cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+          >
+            <IconZap size={12} />
+            <Mono style={{ color: '#F2C94C', fontWeight: 500 }}>52.0 ICP staked</Mono>
+            <span style={{ color: '#9AA0AB' }}>· VP 1,240</span>
+          </button>
+          <span style={{ fontSize: 11, color: '#61666F' }}>Quorum threshold: <Mono style={{ color:'#9AA0AB' }}>1,000 VP</Mono></span>
+        </div>
+        <KanbanBoard tickets={tickets} onOpenTicket={setOpenTicket} onNewIdea={() => {}} />
+      </main>
+      <TicketModal ticket={openTicket} onClose={() => setOpenTicket(null)} onVote={() => setOpenTicket(null)} />
+      <InfluencePanel open={influenceOpen} onClose={() => setInfluenceOpen(false)} />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

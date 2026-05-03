@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Surfaces</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+  }
+  .swatch {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    padding: 10px 10px 10px;
+    aspect-ratio: 1.1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2px;
+  }
+  .swatch .name { font-size: 11px; font-weight: 500; color: var(--fg); }
+  .swatch .hex { font-family: var(--font-mono); font-size: 10px; color: var(--fg-subtle); letter-spacing: 0; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-eyebrow">Surfaces · graphite scale</div>
+  <div class="swatch-grid">
+    <div class="swatch" style="background:#08090C">
+      <span class="name">canvas</span><span class="hex">#08090C</span>
+    </div>
+    <div class="swatch" style="background:#0B0D11">
+      <span class="name">surface-0</span><span class="hex">#0B0D11</span>
+    </div>
+    <div class="swatch" style="background:#14161B">
+      <span class="name">surface-1</span><span class="hex">#14161B</span>
+    </div>
+    <div class="swatch" style="background:#1A1D23">
+      <span class="name">surface-2</span><span class="hex">#1A1D23</span>
+    </div>
+    <div class="swatch" style="background:#22262E">
+      <span class="name">surface-3</span><span class="hex">#22262E</span>
+    </div>
+    <div class="swatch" style="background:#2A2F38">
+      <span class="name">surface-4</span><span class="hex">#2A2F38</span>
+    </div>
+    <div class="swatch" style="background:#3D4148">
+      <span class="name">disabled</span><span class="hex">#3D4148</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

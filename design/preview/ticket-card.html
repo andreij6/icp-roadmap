@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ticket card</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { padding: 0; }
+  .card { padding: 18px 24px; gap: 12px; }
+  .ticket {
+    background: #14161B;
+    border: 1px solid #1F2228;
+    border-radius: 6px;
+    padding: 12px;
+    display: flex; flex-direction: column; gap: 8px;
+    width: 280px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 1px 2px rgba(0,0,0,0.4);
+  }
+  .ticket-head {
+    display: flex; align-items: center; gap: 8px; font-family: var(--font-mono);
+    font-size: 11px; color: #61666F; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .ticket-head .right { margin-left: auto; }
+  .ticket-title { font-size: 13px; font-weight: 500; color: #E6E8EC; line-height: 1.35; }
+  .vote-meta { display: flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--font-mono); color: var(--fg-muted); }
+  .for { color: #4ADE80; }
+  .against { color: #F26D9C; }
+  .pct { margin-left: auto; color: #E6E8EC; }
+  .bar { height: 4px; border-radius: 999px; background: rgba(242,109,156,0.18); overflow: hidden; }
+  .fill { height: 100%; background: #4ADE80; }
+  .ticket-foot { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #9AA0AB; }
+  .av { width: 18px; height: 18px; border-radius: 999px; background: #2A2F38; border: 1px solid #1F2228; flex-shrink: 0; }
+  .stack-av { display: flex; }
+  .stack-av .av { margin-left: -4px; }
+  .stack-av .av:first-child { margin-left: 0; }
+  .icon { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 1.75; }
+  .row { display: flex; gap: 16px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="row">
+    <div class="ticket">
+      <div class="ticket-head">
+        <span>ROAD-142</span>
+        <span class="right" style="color:#7B7FFF;">VOTING · 4d</span>
+      </div>
+      <div class="ticket-title">Add gasless voting via canister-paid cycles</div>
+      <div class="vote-meta">
+        <span class="for">412</span><span class="against">88</span>
+        <span class="pct">82%</span>
+      </div>
+      <div class="bar"><div class="fill" style="width:82%"></div></div>
+      <div class="ticket-foot">
+        <div class="stack-av">
+          <div class="av" style="background:#7B7FFF"></div>
+          <div class="av" style="background:#F2C94C"></div>
+          <div class="av" style="background:#4ADE80"></div>
+        </div>
+        <span>+9</span>
+        <svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="margin-left:auto; color:#F2C94C;"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span style="color:#F2C94C; font-family: var(--font-mono);">2.4</span>
+      </div>
+    </div>
+    <div class="ticket">
+      <div class="ticket-head">
+        <span>ROAD-118</span>
+        <span class="right" style="color:#F2C94C;">DEV · #PR-204</span>
+      </div>
+      <div class="ticket-title">Treasury dashboard with cycle burn rate</div>
+      <div class="ticket-foot" style="margin-top: 4px;">
+        <svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="color:#F2C94C;"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
+        <span class="muted">github · open</span>
+        <div class="stack-av" style="margin-left:auto;">
+          <div class="av" style="background:#F26D9C"></div>
+          <div class="av" style="background:#7B7FFF"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

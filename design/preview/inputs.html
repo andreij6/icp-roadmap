@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Inputs</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .col { display: flex; flex-direction: column; gap: 10px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .lbl { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-muted); }
+  .input {
+    height: 32px; padding: 0 10px;
+    background: #14161B; border: 1px solid #2A2F38; border-radius: 6px;
+    color: #E6E8EC; font: 500 13px var(--font-sans); outline: none;
+    transition: border-color 150ms;
+  }
+  .input:focus { border-color: #7B7FFF; }
+  .input.search { padding-left: 30px; background-image: none; }
+  .search-wrap { position: relative; }
+  .search-wrap svg { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; stroke: #61666F; fill: none; stroke-width: 1.75; }
+  .row { display: flex; gap: 10px; }
+  .row > * { flex: 1; }
+  .icp-input {
+    display: flex; align-items: center; gap: 0;
+    border: 1px solid #2A2F38; border-radius: 6px; background: #14161B;
+    padding: 0 10px 0 0; height: 32px;
+  }
+  .icp-input input { background: transparent; border: none; outline: none; color: #E6E8EC; padding: 0 10px; height: 100%; flex: 1; font: 500 13px var(--font-mono); width: 100%; }
+  .icp-input .unit { color: #F2C94C; font-family: var(--font-mono); font-size: 12px; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-eyebrow">Inputs</div>
+  <div class="col">
+    <div class="field">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input class="input search" placeholder="Search ideas, principals…" style="width: 100%; padding-left: 30px;">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <span class="lbl">Title</span>
+        <input class="input" value="Add gasless voting">
+      </div>
+      <div class="field">
+        <span class="lbl">Boost</span>
+        <div class="icp-input">
+          <input value="0.5">
+          <span class="unit">ICP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

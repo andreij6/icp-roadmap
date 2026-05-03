@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Type — display</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .specimen {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .item { display: flex; align-items: baseline; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .item:last-child { border-bottom: none; }
+  .item .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--fg-subtle); width: 110px; flex-shrink: 0; }
+  .display-1 { font-size: 56px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; color: var(--fg-strong); }
+  .display-2 { font-size: 36px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; color: var(--fg-strong); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-eyebrow">Display · Inter 600, tight tracking</div>
+  <div class="specimen">
+    <div class="item">
+      <span class="lbl">5xl · 56/60</span>
+      <span class="display-1">Stake the future.</span>
+    </div>
+    <div class="item">
+      <span class="lbl">3xl · 36/40</span>
+      <span class="display-2">Decentralized direction</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

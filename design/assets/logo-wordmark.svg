@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <rect width="40" height="40" x="4" y="4" rx="9" fill="#14161B"></rect>
+  <circle cx="14" cy="14" r="2.6" fill="#7B7FFF"></circle>
+  <circle cx="34" cy="14" r="2.6" fill="#F2C94C"></circle>
+  <circle cx="14" cy="34" r="2.6" fill="#4ADE80"></circle>
+  <circle cx="34" cy="34" r="2.6" fill="#E6E8EC"></circle>
+  <path d="M14 14 L34 14 L14 34 L34 34" stroke="#E6E8EC" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"></path>
+  <text x="56" y="31" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#E6E8EC" letter-spacing="-0.5">Roadmap</text>
+</svg>

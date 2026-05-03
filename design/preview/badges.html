@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Status pills</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .row { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    height: 22px; padding: 0 8px;
+    border-radius: 999px;
+    font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    border: 1px solid;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 999px; }
+  .voting    { color: #7B7FFF; background: rgba(123,127,255,0.10); border-color: rgba(123,127,255,0.30); }
+  .voting .dot { background: #7B7FFF; }
+  .dev       { color: #F2C94C; background: rgba(242,201,76,0.10); border-color: rgba(242,201,76,0.30); }
+  .dev .dot  { background: #F2C94C; }
+  .done      { color: #4ADE80; background: rgba(74,222,128,0.10); border-color: rgba(74,222,128,0.30); }
+  .done .dot { background: #4ADE80; }
+  .archived  { color: #61666F; background: rgba(255,255,255,0.03); border-color: #2A2F38; }
+  .archived .dot { background: #61666F; }
+  .role-pill {
+    display: inline-flex; align-items: center; height: 22px; padding: 0 8px;
+    border-radius: 4px; font-size: 11px; font-weight: 500; border: 1px solid var(--border-strong);
+    background: var(--surface-2); color: var(--fg-muted);
+  }
+  .role-founder { color: #F2C94C; border-color: rgba(242,201,76,0.30); background: rgba(242,201,76,0.06); }
+  .role-board   { color: #7B7FFF; border-color: rgba(123,127,255,0.30); background: rgba(123,127,255,0.06); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-eyebrow">Kanban status</div>
+  <div class="row">
+    <span class="pill voting"><span class="dot"></span>Voting</span>
+    <span class="pill dev"><span class="dot"></span>Development</span>
+    <span class="pill done"><span class="dot"></span>Done</span>
+    <span class="pill archived"><span class="dot"></span>Archived</span>
+  </div>
+  <div class="card-eyebrow" style="margin-top: 4px;">Roles</div>
+  <div class="row">
+    <span class="role-pill role-founder">Founder</span>
+    <span class="role-pill role-board">Board · 50+ ICP</span>
+    <span class="role-pill">Backer</span>
+  </div>
+</div>
+</body>
+</html>

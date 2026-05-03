@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Type — mono</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .row { display: flex; align-items: center; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .row:last-child { border-bottom: none; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--fg-subtle); width: 130px; flex-shrink: 0; }
+  .mono-num { font-family: var(--font-mono); font-feature-settings: 'zero', 'ss01'; font-variant-numeric: tabular-nums; }
+  .icp { color: #F2C94C; font-weight: 500; }
+  .principal { color: var(--fg-muted); }
+  .ticket { color: var(--fg-subtle); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; font-size: 11px; }
+  .vp { color: var(--fg-strong); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-eyebrow">JetBrains Mono · numerics, principals, IDs</div>
+  <div>
+    <div class="row"><span class="lbl">ICP value</span><span class="mono-num icp" style="font-size:18px;">12.4 ICP</span></div>
+    <div class="row"><span class="lbl">Voting power</span><span class="mono-num vp" style="font-size:16px;">VP&nbsp;1,240</span></div>
+    <div class="row"><span class="lbl">Principal</span><span class="mono-num principal" style="font-size:13px;">2vxsx-fae…icp</span></div>
+    <div class="row"><span class="lbl">Ticket ID</span><span class="mono-num ticket">ROAD-142</span></div>
+    <div class="row"><span class="lbl">Block hash</span><span class="mono-num" style="font-size:11px; color: var(--fg-subtle);">0x8a3f…d2c1</span></div>
+  </div>
+</div>
+</body>
+</html>

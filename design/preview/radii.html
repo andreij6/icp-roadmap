@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Radii</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .blob { width: 64px; height: 64px; background: var(--surface-2); border: 1px solid var(--border-strong); }
+  .name { font-family: var(--font-mono); font-size: 11px; color: var(--fg); }
+  .val { font-family: var(--font-mono); font-size: 10px; color: var(--fg-subtle); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-eyebrow">Corner radii</div>
+  <div class="grid">
+    <div class="cell"><div class="blob" style="border-radius:0"></div><span class="name">none</span><span class="val">0</span></div>
+    <div class="cell"><div class="blob" style="border-radius:3px"></div><span class="name">xs</span><span class="val">3</span></div>
+    <div class="cell"><div class="blob" style="border-radius:4px"></div><span class="name">sm</span><span class="val">4</span></div>
+    <div class="cell"><div class="blob" style="border-radius:6px"></div><span class="name">md</span><span class="val">6</span></div>
+    <div class="cell"><div class="blob" style="border-radius:8px"></div><span class="name">lg</span><span class="val">8</span></div>
+    <div class="cell"><div class="blob" style="border-radius:12px"></div><span class="name">xl</span><span class="val">12</span></div>
+    <div class="cell"><div class="blob" style="border-radius:999px"></div><span class="name">pill</span><span class="val">∞</span></div>
+  </div>
+</div>
+</body>
+</html>

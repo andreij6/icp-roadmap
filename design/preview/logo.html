@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Logo</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .logo-wrap { display: flex; gap: 24px; align-items: center; padding: 8px 4px; }
+  .logo-row { display: flex; gap: 32px; align-items: center; }
+  .logo-card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-card img { display: block; }
+  .logo-card.light { background: #F6F7F8; border-color: #E2E4E7; }
+  .meta { font-size: var(--fs-xs); color: var(--fg-subtle); font-family: var(--font-mono); }
+  .stack { display: flex; flex-direction: column; gap: 6px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo-row">
+    <div class="logo-card">
+      <img src="../assets/logo-mark.svg" width="44" height="44" alt="">
+      <div class="stack">
+        <span style="color: var(--fg-strong); font-weight: 600;">Mark</span>
+        <span class="meta">logo-mark.svg</span>
+      </div>
+    </div>
+    <div class="logo-card light">
+      <img src="../assets/logo-mark-light.svg" width="44" height="44" alt="">
+      <div class="stack">
+        <span style="color: #14161B; font-weight: 600;">On light</span>
+        <span class="meta" style="color: #61666F;">logo-mark-light.svg</span>
+      </div>
+    </div>
+    <div class="logo-card">
+      <img src="../assets/logo-wordmark.svg" width="160" height="38" alt="">
+    </div>
+  </div>
+</div>
+</body>
+</html>

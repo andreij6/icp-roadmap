@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vote bar</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .stack { display: flex; flex-direction: column; gap: 16px; }
+  .vote { display: flex; flex-direction: column; gap: 6px; }
+  .vote-meta { display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--fg-muted); font-family: var(--font-mono); }
+  .vote-meta .for { color: #4ADE80; }
+  .vote-meta .against { color: #F26D9C; }
+  .vote-meta .pct { margin-left: auto; color: var(--fg-strong); }
+  .bar {
+    height: 6px; border-radius: 999px; background: rgba(242,109,156,0.18);
+    overflow: hidden; display: flex; position: relative;
+  }
+  .bar > .fill { background: #4ADE80; }
+  .quorum {
+    position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--fg-subtle);
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-eyebrow">Vote bar · sentiment</div>
+  <div class="stack">
+    <div class="vote">
+      <div class="vote-meta">
+        <span class="for">412 for</span>
+        <span class="against">88 against</span>
+        <span class="pct">82%</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width: 82%;"></div>
+        <div class="quorum" style="left: 60%;"></div>
+      </div>
+    </div>
+    <div class="vote">
+      <div class="vote-meta">
+        <span class="for">94 for</span>
+        <span class="against">112 against</span>
+        <span class="pct" style="color:#F26D9C;">46%</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width: 46%;"></div>
+        <div class="quorum" style="left: 60%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
