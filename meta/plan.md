@@ -354,11 +354,93 @@ Phases 1–4 (canister) and Phases 5–7 (frontend) can proceed in parallel once
 
 ---
 
-## Open Questions (resolve before Phase 2)
+## Decisions (resolved)
 
-1. **Founder designation** — how is the initial Founder principal set? Options: (a) canister `--argument` at deploy time, (b) first caller after deploy, (c) hardcoded principal. Recommend (a).
-2. **Quorum threshold** — is `1,000 VP` the right default? Should it be configurable per-project by the Founder?
-3. **Voting window** — 7 days default. Is this fixed or Founder-configurable per ticket?
-4. **Boost directionality** — spec says boost adds influence; design shows it as "for"-aligned. Can a backer boost against a ticket? Clarify before implementing Phase 4.
-5. **Treasury disposition** — where do boost fees go? Stay in canister forever? Used to pay cycles? Paid out to Founder? Needs a policy.
-6. **Multi-project** — MVP scopes to one project per canister. Is that acceptable or must one canister host many projects?
+### 1. Founder designation
+**Decision: canister `--argument` at deploy time.**
+
+The deployer passes their principal as `founder_principal` in the `dfx deploy` init argument. This is the only Founder — no transfer mechanism for MVP. Encoded in `#[init]` as:
+```rust
+#[init]
+fn init(founder: Principal) {
+    STATE.with(|s| s.borrow_mut().founder = founder);
+}
+```
+dfx deploy call:
+```
+dfx deploy roadmap_backend --argument "(principal \"<YOUR_PRINCIPAL>\")"
+```
+
+---
+
+### 2. Quorum threshold
+**Decision: Founder-configurable per project, default 1,000 VP, minimum 100 VP.**
+
+- Default at project creation: `quorum_threshold_vp = 1_000`
+- Founder can update via `set_quorum_threshold(vp: u64)` (must be ≥ 100)
+- Quorum is displayed on the board subheader so voters always know the bar
+- No per-ticket override — one threshold per project keeps it simple
+
+---
+
+### 3. Voting window
+**Decision: Founder sets a project-wide default (7 days); can override per ticket at creation time.**
+
+- Project has `default_voting_days: u8` (default `7`, range `1–30`)
+- Board Members creating a ticket inherit the project default but can request a different window; Founder approves by setting `closes_at` at ticket creation
+- For MVP simplicity: Board Member specifies duration in days when calling `create_ticket(project_id, title, description, voting_days: Option<u8>)` — uses project default if `None`
+- Heartbeat sweep checks `closes_at` every hour
+
+---
+
+### 4. Boost directionality
+**Decision: boosts are always "for". To oppose, vote against normally.**
+
+- `boost_vote(ticket_id, amount_e8s)` always adds VP to the "for" side of the ticket
+- The rational: you pay ICP to *advance* a proposal; opposition is free (just vote against)
+- This creates a natural asymmetry that mirrors real staking incentives — backers put money where their mouth is on things they want shipped
+- UI: the "Boost" button only appears alongside "Vote for"; it is not available on the against side
+
+---
+
+### 5. Treasury & platform fee
+**Decision: 3% of every ICP payment to the platform developer; remainder stays in the project canister treasury under Founder control.**
+
+**Applies to:**
+- Influence boost payments (0.1–10 ICP per boost)
+- Staking deposits are NOT subject to the fee (staking is user funds held in custody, not a service charge)
+
+**Fee routing:**
+```
+PLATFORM_FEE_BPS = 300  // 3%
+PLATFORM_TREASURY: Principal = "<andreij6 principal hardcoded at compile time>"
+```
+
+On every boost payment of `amount_e8s`:
+1. Compute `fee = amount_e8s * 300 / 10_000`
+2. Transfer `fee` → `PLATFORM_TREASURY` via Ledger
+3. Transfer `amount_e8s - fee` → project canister subaccount (project treasury)
+4. Record boost on-chain only if both transfers succeed; rollback (refund caller) if either fails
+
+**Project treasury (the 97%):**
+- Held in the canister's ICP subaccount
+- Founder can withdraw via `withdraw_treasury(to: Principal, amount_e8s: u64)`
+- Intended use: fund development, pay contributors, top up cycles
+- Treasury balance is publicly queryable: `get_treasury_balance() -> u64`
+
+**Cycle responsibility:**
+- Each project runs its own canister; the Founder is solely responsible for keeping it topped up with cycles
+- Canister exposes `get_cycle_balance() -> u64` so Founders can monitor
+- When cycles drop below a warning threshold (1T cycles), the canister logs a warning in every query response header
+- No automatic cycle top-up for MVP; Founder manually converts ICP from treasury → cycles via NNS or `dfx canister deposit-cycles`
+
+---
+
+### 6. Multi-project
+**Decision: one project per canister. Founders deploy their own canister instance.**
+
+- The canister binary is the platform; each project is a separate deployed instance
+- This is the cleanest ICP-native model — each project's state is fully isolated, Founders control their own canister, and there's no shared-state bottleneck
+- Platform developer publishes the canonical Wasm; Founders deploy it and pass their principal as the init argument
+- Future: a factory canister can automate deployment; for MVP, `dfx deploy` + instructions in README is sufficient
+- The marketing site (Phase 8) will link to known deployed canister IDs
