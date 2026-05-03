@@ -117,7 +117,7 @@ The agent should be able to talk to Linear, either via a configured Linear MCP s
    - For each blocking issue, check its current state.
    - If ANY blocking issue is not in a terminal state (`Done`, `Cancelled`, `Canceled`, `Duplicate`, `Closed`):
      - Move this ticket back to `Backlog`.
-     - Post a single comment (not a workpad): `Blocked by {{ blocking_issue.identifier }} ({{ blocking_issue.state }}). Moving to Backlog until resolved.`
+     - Post a single comment (not a workpad) naming the blocking issue identifier and its current state, e.g.: `Blocked by SPA-12 (In Progress). Moving to Backlog until resolved.`
      - Stop immediately. Do not proceed.
    - If all blocking issues are terminal, continue to step 4.
 4. Route to the matching flow:
